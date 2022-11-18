@@ -1,5 +1,5 @@
 from ideaboard import IdeaBoard
-from time import sleep_ms
+from time import sleep
 
 ib = IdeaBoard()
 
@@ -7,6 +7,5 @@ ib = IdeaBoard()
 # from 0 (RED) to 255 (RED)
 while True:
     for i in range(256):
-        ib.arcoiris(i)
-        print(i)
-        sleep(0.05)
+        ib.arcoiris = i
+        sleep(0.01)

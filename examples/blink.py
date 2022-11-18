@@ -10,6 +10,7 @@ ROJO = (255,0,0)
 NEGRO = (0,0,0)
 
 while True:
-    for i in range(256):
-        ib.arcoiris(i)
-        sleep(0.01)
+    ib.pixel = AZUL
+    sleep(1)
+    ib.pixel = NEGRO
+    sleep(1)
