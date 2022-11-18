@@ -8,7 +8,7 @@ https = requests.Session(socket, ssl.create_default_context())
 
 print("Connecting...")
 wifi.radio.connect("ssid", "password")
-print(f"Connected to Wifi!")
+print("Connected to Wifi!")
 
 URL = "http://api.open-notify.org/iss-now.json"
 
