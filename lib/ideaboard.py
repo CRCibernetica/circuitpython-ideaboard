@@ -17,6 +17,7 @@ class IdeaBoard:
         self._m2b = pwmio.PWMOut(board.IO15, duty_cycle=0, frequency=50)
         self.motor_1 = motor.DCMotor(self._m1a, self._m1b)
         self.motor_2 = motor.DCMotor(self._m2a, self._m2b)
+        self.map_range = map_range
     
     
     @property
