@@ -1,3 +1,23 @@
+# SPDX-FileCopyrightText: 2022 bborncr for CRCibernetica
+#
+# SPDX-License-Identifier: MIT
+
+"""
+`ideaboard`
+================================================================================
+CircuitPython helper library for the CRCibernetica IdeaBoard.
+* Author(s): Bentley Born
+Implementation Notes
+--------------------
+**Hardware:**
+* `CRCibernetica IdeaBoard <https://www.crcibernetica.com/crcibernetica-ideaboard/`_
+**Software and Dependencies:**
+* CircuitPython firmware for IdeaBoard:
+  https://circuitpython.org/board/crcibernetica_ideaboard/
+* Adafruit's NeoPixel library: https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel
+* Adafruit's SimpleIO library: https://github.com/adafruit/Adafruit_CircuitPython_SimpleIO
+* Adafruit's Motor library: https://github.com/adafruit/Adafruit_CircuitPython_Motor
+"""
 import board
 from neopixel import NeoPixel
 from rainbowio import colorwheel
@@ -51,29 +71,6 @@ class IdeaBoard:
     def arcoiris(self, n=0):
         color = colorwheel(n)
         self.pixel = color 
-
-
-#     def motor_1(self, vel=0):
-#         vel = int(map_range(vel, -255, 255, -65535, 65535))
-#         if vel < -65535 | vel > 65535:
-#             print(f"velocidad no valida: {vel}")
-#         if vel >= 0:
-#             self._m1a.duty_cycle = vel
-#             self._m1b.duty_cycle = 0
-#         if vel < 0:
-#             self._m1a.duty_cycle = 0
-#             self._m1b.duty_cycle = (vel * -1)
-#     
-#     def motor_2(self, vel=0):
-#         vel = int(map_range(vel, -255, 255, -65535, 65535))
-#         if vel < -65535 | vel > 65535:
-#             print(f"velocidad no valida: {vel}")
-#         if vel >= 0:
-#             self._m2a.duty_cycle = vel
-#             self._m2b.duty_cycle = 0
-#         if vel < 0:
-#             self._m2a.duty_cycle = 0
-#             self._m2b.duty_cycle = (vel * -1)
         
         
     class Servo:
@@ -82,10 +79,10 @@ class IdeaBoard:
 
         Args:
             pin: The pin where servo is connected. Must support PWM.
-            freq (int): The frequency of the signal, in hertz.
-            min_us (int): The minimum signal length supported by the servo.
-            max_us (int): The maximum signal length supported by the servo.
-            max_angle (int): The angle between the minimum and maximum positions.
+            freq (int): The frequency of the signal, in hertz, normally 50Hz.
+            min_pulse (int): The minimum signal length supported by the servo.
+            max_pulse (int): The maximum signal length supported by the servo.
+            angle (int or float): The angle of the servo in degrees.
 
         """
         def __init__(self, pin, freq=50, min_pulse = 500, max_pulse = 2500):
