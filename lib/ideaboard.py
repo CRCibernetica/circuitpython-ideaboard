@@ -24,6 +24,8 @@ from rainbowio import colorwheel
 import pwmio
 from simpleio import map_range
 from adafruit_motor import servo, motor
+import digitalio
+from analogio import AnalogIn
 
 
 class IdeaBoard:
@@ -103,4 +105,24 @@ class IdeaBoard:
             """Move to the specified angle in ``degrees``."""
             self._angle = new_angle
             self.servo.angle = self._angle
+            
+            
+    class DigitalIn:
+        """
+        Create a digital input pin.
+
+        Args:
+            pin: The digital pin to set up. ie. board.IO4
+            pull: internal resistor setting: UP, DOWN or None
+
+        """
+        def __init__(self, pin, pull = None):
+            self.digitalin = digitalio.DigitalInOut(pin)
+            self.digitalin.direction = digitalio.Direction.INPUT
+            if pull:
+                self.digitalin.pull = digitalio.Pull.pull
+
+        @property
+        def value(self):
+            return self.digitalin.value
             
