@@ -25,7 +25,7 @@ import pwmio
 from simpleio import map_range
 from adafruit_motor import servo, motor
 import digitalio
-from analogio import AnalogIn
+import analogio
 
 
 class IdeaBoard:
@@ -149,3 +149,19 @@ class IdeaBoard:
             """Set the value of the output: True, False, 0 or 1"""
             self._value = new_value
             self.digitalout.value = self._value
+            
+            
+    class AnalogIn:
+        """
+        Create an analog input pin.
+
+        Args:
+            pin: The analog pin to set up. ie. board.IO33
+
+        """
+        def __init__(self, pin):
+            self.analogin = analogio.AnalogIn(pin)
+
+        @property
+        def value(self):
+            return self.analogin.value
