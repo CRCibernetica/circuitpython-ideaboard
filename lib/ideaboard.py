@@ -126,3 +126,26 @@ class IdeaBoard:
         def value(self):
             return self.digitalin.value
             
+
+    class DigitalOut:
+        """
+        Create a digital output pin.
+
+        Args:
+            pin: The digital pin to set up. ie. board.IO4
+
+        """
+        def __init__(self, pin):
+            self.digitalout = digitalio.DigitalInOut(pin)
+            self.digitalout.direction = digitalio.Direction.OUTPUT
+            self._value = 0
+
+        @property
+        def value(self):
+            return self._value
+        
+        @value.setter
+        def value(self, new_value):
+            """Set the value of the output: True, False, 0 or 1"""
+            self._value = new_value
+            self.digitalout.value = self._value
