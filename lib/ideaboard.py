@@ -85,6 +85,14 @@ class IdeaBoard:
             min_pulse (int): The minimum signal length supported by the servo.
             max_pulse (int): The maximum signal length supported by the servo.
             angle (int or float): The angle of the servo in degrees.
+        
+        Usage:
+            import board
+            from ideaboard import IdeaBoard()
+            ib = IdeaBoard()
+            servo = ib.Servo(board.IO4)
+            servo.angle = 45
+            print(servo.angle)
 
         """
         def __init__(self, pin, freq=50, min_pulse = 500, max_pulse = 2500):
@@ -114,6 +122,13 @@ class IdeaBoard:
         Args:
             pin: The digital pin to set up. ie. board.IO4
             pull: internal resistor setting: UP, DOWN or None
+        
+        Usage:
+            import board
+            from ideaboard import IdeaBoard
+            ib = IdeaBoard()
+            pin = ib.DigitalIn(board.IO27)
+            print(pin.value)
 
         """
         def __init__(self, pin, pull = None):
@@ -133,6 +148,13 @@ class IdeaBoard:
 
         Args:
             pin: The digital pin to set up. ie. board.IO4
+
+        Usage:
+            import board
+            from ideaboard import IdeaBoard
+            ib = IdeaBoard()
+            pin = ib.DigitalOut(board.IO27)
+            pin.value = True
 
         """
         def __init__(self, pin):
@@ -157,6 +179,13 @@ class IdeaBoard:
 
         Args:
             pin: The analog pin to set up. ie. board.IO33
+            
+        Usage:
+            import board
+            from ideaboard import IdeaBoard
+            ib = IdeaBoard()
+            pin = ib.AnalogIn(board.IO33)
+            print(pin.value)
 
         """
         def __init__(self, pin):
