@@ -29,6 +29,9 @@ import analogio
 
 
 class IdeaBoard:
+    UP = digitalio.Pull.UP
+    DOWN = digitalio.Pull.DOWN
+    
     def __init__(self):
         self._brightness = 0.3
         self._np = NeoPixel(board.NEOPIXEL, 1, brightness=self._brightness, auto_write=True)
@@ -131,11 +134,12 @@ class IdeaBoard:
             print(pin.value)
 
         """
-        def __init__(self, pin, pull = None):
+        def __init__(self, pin, pull=None):
             self.digitalin = digitalio.DigitalInOut(pin)
             self.digitalin.direction = digitalio.Direction.INPUT
             if pull:
-                self.digitalin.pull = digitalio.Pull.pull
+               self.digitalin.pull = pull
+                
 
         @property
         def value(self):
