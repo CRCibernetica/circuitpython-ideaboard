@@ -124,7 +124,7 @@ class IdeaBoard:
 
         Args:
             pin: The digital pin to set up. ie. board.IO4
-            pull: internal resistor setting: UP, DOWN or None
+            pull: internal resistor setting: ib.UP, ib.DOWN or None
         
         Usage:
             import board
@@ -198,3 +198,34 @@ class IdeaBoard:
         @property
         def value(self):
             return self.analogin.value
+        
+        
+    class AnalogOut:
+        """
+        Create an analog output pin (DAC).
+
+        Args:
+            pin: The analog pin to set up. There are two
+            pins allowed on the IdeaBoard: board.IO25 or board.IO26
+            
+        Usage:
+            import board
+            from ideaboard import IdeaBoard
+            ib = IdeaBoard()
+            dac = ib.AnalogOut(board.IO26)
+            dac.value = 32768 # sends 1.65V to the pin
+
+        """
+        def __init__(self, pin):
+            self.analogout = analogio.AnalogOut(pin)
+
+        @property
+        def value(self):
+            return self.analogOut.value
+        
+        @value.setter
+        def value(self, new_value):
+            """Set the value of the output: 0 - 65535"""
+            #self._value = new_value
+            self.analogout.value = new_value
+            
