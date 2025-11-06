@@ -43,6 +43,13 @@ class IdeaBoard:
         self.motor_1 = motor.DCMotor(self._m1a, self._m1b)
         self.motor_2 = motor.DCMotor(self._m2a, self._m2b)
         self.map_range = map_range
+
+    def deinit(self):
+      self._np.deinit()
+      self._m1a.deinit()
+      self._m1b.deinit()
+      self._m2a.deinit()
+      self._m2b.deinit()
     
     
     @property
