@@ -47,7 +47,7 @@ keys = keypad.Keys((board.IO0,), value_when_pressed=False)   # BOOT button = sta
 ```
 
 `SumoBotV2()` raises `RuntimeError` if the sensor board is not found or its firmware
-is older than 0x08. Libraries needed in `CIRCUITPY/lib/` (all in this repository):
+is older than 0x08. Libraries needed in `/lib` on the board (all in this repository):
 `sumobotv2.py`, `ideaboard.py`, `adafruit_lsm6ds/`, `adafruit_register/`,
 `adafruit_motor/`, `neopixel.mpy`, `simpleio.mpy`.
 
@@ -84,7 +84,7 @@ if on_white(s1) or on_white(s2):      # front edge: reverse and turn
 `examples/sumobotv2/ir_gradient.py` provides `ir_gradient(sumo.infrared)` returning
 `(x, y, strength, degrees)`: the direction towards higher readings, normalized so
 lighting changes do not matter. Check `strength` against a noise floor before trusting
-`degrees`. Copy the file to `CIRCUITPY/` or `lib/` to import it.
+`degrees`. Copy the file to `/` or `/lib` on the board to import it.
 
 ### Colour sensor
 

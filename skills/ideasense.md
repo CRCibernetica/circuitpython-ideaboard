@@ -33,7 +33,7 @@ features (motors, servos, pins, RGB LED), add `from ideaboard import IdeaBoard` 
 with `board.I2C()`. If the board is not plugged in, the constructor raises
 `ValueError: No I2C device at address`.
 
-Libraries needed in `CIRCUITPY/lib/` (all included in this repository):
+Libraries needed in `/lib` on the board (all included in this repository):
 `ideasense.py`, `font5x5.py`, `adafruit_ht16k33/`, `adafruit_sht31d.mpy`,
 `adafruit_ltr329_ltr303.mpy`, `adafruit_lsm6ds/`, `adafruit_register/`.
 

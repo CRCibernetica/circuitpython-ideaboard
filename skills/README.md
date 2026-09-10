@@ -9,6 +9,7 @@ code for your project that runs first time.
 | `ideaboard.md` | The IdeaBoard on its own: motors, RGB LED, servos, sensors on the pins, Wi-Fi, buzzer. Always include this one. |
 | `ideasense.md` | The IdeaSense Explorer: 5x5 LED matrix, three buttons, temperature/humidity, light, accelerometer/gyro. |
 | `sumobotv2.md` | The SumoBot v2 robot: four infrared floor sensors, colour sensor, IMU, plus the IdeaBoard motors. |
+| `libraries.md` | Any sensor, display or module that the other documents do not mention: how to find the CircuitPython library, copy it to the board, and test it. |
 
 ## How to use them
 
@@ -24,6 +25,10 @@ code for your project that runs first time.
 
 5. Copy the code the AI gives you into IdeaCode (or Thonny) and run it. If it fails,
    paste the exact error from the console back into the chat.
+
+The `tools/` folder has `ibserial.py`, a small command-line program that AI agents (or you)
+can use to list, copy, and run files on the board over the USB serial port when IdeaCode
+or Thonny are not open. `libraries.md` explains it.
 
 The documents are written for the AI, not for you, so they are dense. You do not need
 to read them. If you are curious about a feature, the `examples/` folder in this

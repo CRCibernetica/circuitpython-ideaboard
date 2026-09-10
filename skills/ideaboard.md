@@ -25,8 +25,10 @@ library that is not listed here, say so instead of guessing.
 
 ## 2. How code runs
 
-- The board appears as a USB drive named `CIRCUITPY`. `code.py` in its root runs
-  automatically at power-on and after every save. Libraries live in `CIRCUITPY/lib/`.
+- The board does **not** appear as a USB drive (no `CIRCUITPY` folder) and `circup` does
+  not work with it. Files are moved over the USB serial port by IdeaCode or Thonny.
+  `code.py` in the board's root runs automatically at power-on and after every
+  save. Libraries live in `/lib` on the board.
 - Students normally use **IdeaCode** (https://ideacode.crcibernetica.com, Chrome/Edge):
   Connect, edit, Ctrl+R runs the editor content as `code.py`. Output from `print()`
   appears in the console. Ctrl+C stops the program. Thonny works the same way.
@@ -295,8 +297,9 @@ strip.fill((0, 0, 50))
    drop to raw modules only for things the library does not cover.
 7. Mention which physical pins to wire and that sensors share GND with the board.
 8. Values: analog 0 to 65535, servo 0 to 180, throttle -1.0 to 1.0, colours 0 to 255.
-9. When a library is not installed by default, say so and name the `.mpy` file to copy
-   from the Adafruit CircuitPython Bundle into `CIRCUITPY/lib/`.
+9. When a library is not installed by default, say so and name the `.mpy` file or folder
+   to copy from the 10.x Adafruit CircuitPython Bundle into `/lib` on the board, using
+   IdeaCode or Thonny. `libraries.md` in this folder has the full procedure.
 10. Give a complete program, not a fragment, unless the student asks for a change to
     code they pasted. Keep it under about 80 lines when possible.
 
