@@ -191,8 +191,8 @@ time.sleep(0.5)
 buzzer.duty_cycle = 0           # off
 ```
 
-Tunes use RTTTL strings with `adafruit_rtttl` (must be copied to `lib/` from the
-Adafruit bundle; it is not installed by default):
+Tunes use RTTTL strings with `adafruit_rtttl` (installed in `lib/`, together with its
+dependency `adafruit_waveform`). Thousands of songs exist online; search "RTTTL songs":
 
 ```python
 from adafruit_rtttl import play
@@ -231,7 +231,8 @@ Adafruit I2C drivers (`.mpy` files) must be copied to `lib/`. Installed by defau
 `adafruit_lsm6ds` (accelerometer/gyro), `adafruit_sht31d` (temperature/humidity),
 `adafruit_ltr329_ltr303` (light), `adafruit_ht16k33` (LED matrix), `adafruit_register`,
 `adafruit_motor`, `neopixel`, `simpleio`, `adafruit_requests`, `adafruit_minimqtt`,
-`adafruit_io`, `adafruit_ticks`, plus `ideaboard`, `ideasense`, `sumobotv2`, `font5x5`.
+`adafruit_io`, `adafruit_ticks`, `adafruit_rtttl`, `adafruit_waveform`, plus `ideaboard`,
+`ideasense`, `sumobotv2`, `font5x5`.
 
 ### Wi-Fi and HTTP
 
