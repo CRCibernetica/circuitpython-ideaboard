@@ -1,0 +1,25 @@
+# CRCibernetica IdeaBoard
+
+> CircuitPython libraries, reference documents and examples for the IdeaBoard, an ESP32-based educational robotics board made in Costa Rica, and the IdeaSense Explorer and SumoBot v2 boards that plug into it. The board has no USB drive: files reach it over the serial REPL.
+
+Read the reference document for the hardware in use before writing code. Start with the IdeaBoard document; add the others only when that hardware is present.
+
+## Reference documents for AI assistants
+
+- [IdeaBoard](https://raw.githubusercontent.com/CRCibernetica/circuitpython-ideaboard/master/skills/ideaboard.md): motors, RGB LED, servos, pins and sensors, Wi-Fi, buzzer. Always read this one.
+- [IdeaSense Explorer](https://raw.githubusercontent.com/CRCibernetica/circuitpython-ideaboard/master/skills/ideasense.md): 5x5 LED matrix, buttons, temperature/humidity, light, accelerometer/gyro.
+- [SumoBot v2](https://raw.githubusercontent.com/CRCibernetica/circuitpython-ideaboard/master/skills/sumobotv2.md): infrared floor sensors, colour sensor, IMU, motors.
+- [Other libraries](https://raw.githubusercontent.com/CRCibernetica/circuitpython-ideaboard/master/skills/libraries.md): finding, copying and testing a CircuitPython library for any other sensor or module.
+
+## Tools
+
+- [ibserial.py](https://raw.githubusercontent.com/CRCibernetica/circuitpython-ideaboard/master/tools/ibserial.py): command-line program to list, copy and run files on the board over USB serial. Run with no arguments for usage.
+
+## Examples
+
+- [examples/](https://github.com/CRCibernetica/circuitpython-ideaboard/tree/master/examples): working scripts for the IdeaBoard, with `ideasense/` and `sumobotv2/` subfolders.
+- [lib/](https://github.com/CRCibernetica/circuitpython-ideaboard/tree/master/lib): the board libraries as shipped.
+
+## Optional
+
+- [Wiki](https://github.com/CRCibernetica/circuitpython-ideaboard/wiki): human-facing documentation. Pinouts and jumper settings, IdeaScratch, IdeaCode, library usage, Adafruit IO, music, ESP-NOW.

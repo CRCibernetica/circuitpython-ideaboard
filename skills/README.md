@@ -13,18 +13,29 @@ code for your project that runs first time.
 
 ## How to use them
 
+The easiest way is to point your AI tool at this repository. Tools that can read web
+pages or files (Claude Code, Cursor, Copilot in an editor, ChatGPT with browsing, ...)
+will find the `llms.txt` index at the root of the repository and read the documents
+they need. Say something like:
+
+> Read https://github.com/CRCibernetica/circuitpython-ideaboard/blob/master/llms.txt
+> before writing any code. My project uses the IdeaBoard and the SumoBot v2.
+
+If your tool cannot open links, paste the documents in yourself:
+
 1. Open the file(s) for your hardware on GitHub and click **Raw**, or open them in a text editor.
 2. Copy the whole contents.
 3. Start a new chat with your AI tool and paste the contents as your first message.
    Paste `ideaboard.md` first, then the others if you need them.
-4. Then describe your project in your own words, in English or Spanish. For example:
 
-   > Quiero que el robot avance hasta que detecte la línea blanca, retroceda y gire a la izquierda.
+Either way, then describe your project in your own words, in English or Spanish. For example:
 
-   > Make the matrix show a smiley face when the temperature is above 28 degrees.
+> Quiero que el robot avance hasta que detecte la línea blanca, retroceda y gire a la izquierda.
 
-5. Copy the code the AI gives you into IdeaCode (or Thonny) and run it. If it fails,
-   paste the exact error from the console back into the chat.
+> Make the matrix show a smiley face when the temperature is above 28 degrees.
+
+Copy the code the AI gives you into IdeaCode (or Thonny) and run it. If it fails,
+paste the exact error from the console back into the chat.
 
 The `tools/` folder has `ibserial.py`, a small command-line program that AI agents (or you)
 can use to list, copy, and run files on the board over the USB serial port when IdeaCode
