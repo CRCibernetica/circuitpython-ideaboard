@@ -37,10 +37,11 @@ plus all the core modules: `analogio`, `audiobusio`, `audiocore`, `audiomixer`,
 `sdcardio`, `socketpool`, `ssl`, `touchio`, `wifi`, and more (`help("modules")` at the
 REPL prints the full list).
 
-Shipped in `lib/` by this repository: `adafruit_ht16k33`, `adafruit_io`,
-`adafruit_lsm6ds`, `adafruit_ltr329_ltr303`, `adafruit_minimqtt`, `adafruit_register`,
+Shipped in `lib/` by this repository: `adafruit_ds18x20`,
+`adafruit_ht16k33`, `adafruit_io`, `adafruit_lsm6ds`, `adafruit_ltr329_ltr303`,
+`adafruit_minimqtt`, `adafruit_msa3xx`, `adafruit_onewire`, `adafruit_register`,
 `adafruit_rtttl`, `adafruit_sht31d`, `adafruit_ticks`, `adafruit_waveform`,
-`font5x5`, `ideaboard`, `ideasense`, `sumobotv2`. A student's board may have more or
+`font5x5`, `hcsr04` (ultrasonic, see ideaboard.md), `ideaboard`, `ideasense`, `sumobotv2`. A student's board may have more or
 fewer; when in doubt ask them to look in **Device > lib** in IdeaCode, or run
 `tools/ibserial.py ls /lib`.
 

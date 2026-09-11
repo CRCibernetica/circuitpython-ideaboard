@@ -203,16 +203,18 @@ play(board.IO27, "IronMan:d=4,o=5,b=155:2b4,2d5,4d5,4e5,2e5,8g5,8f#5,8g5,8f#5,8g
 
 ### Ultrasonic distance (HC-SR04)
 
-`adafruit_hcsr04` is not installed by default; if the student has it:
+`hcsr04` is shipped in `lib/` (Mike Mabey's driver, not Adafruit's `adafruit_hcsr04`):
 
 ```python
-import adafruit_hcsr04
-sonar = adafruit_hcsr04.HCSR04(trigger_pin=board.IO18, echo_pin=board.IO19)
+import hcsr04
+sonar = hcsr04.HCSR04(trig_pin=board.IO18, echo_pin=board.IO19)
 try:
-    print(sonar.distance)   # cm
+    print(sonar.dist_cm())  # cm
 except RuntimeError:
     pass                    # no echo this time; ignore and retry
 ```
+
+Do not write `import adafruit_hcsr04` or `sonar.distance`; that library is not installed.
 
 ### I2C devices
 
@@ -233,8 +235,10 @@ Adafruit I2C drivers (`.mpy` files) must be copied to `lib/`. Installed by defau
 `adafruit_lsm6ds` (accelerometer/gyro), `adafruit_sht31d` (temperature/humidity),
 `adafruit_ltr329_ltr303` (light), `adafruit_ht16k33` (LED matrix), `adafruit_register`,
 `adafruit_motor`, `neopixel`, `simpleio`, `adafruit_requests`, `adafruit_minimqtt`,
-`adafruit_io`, `adafruit_ticks`, `adafruit_rtttl`, `adafruit_waveform`, plus `ideaboard`,
-`ideasense`, `sumobotv2`, `font5x5`.
+`adafruit_io`, `adafruit_ticks`, `adafruit_rtttl`, `adafruit_waveform`,
+`adafruit_onewire` + `adafruit_ds18x20` (DS18B20 temperature), `adafruit_msa3xx`
+(MSA301/MSA311 accelerometer), `hcsr04` (ultrasonic), plus `ideaboard`, `ideasense`,
+`sumobotv2`, `font5x5`.
 
 ### Wi-Fi and HTTP
 
