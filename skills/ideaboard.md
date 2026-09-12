@@ -235,7 +235,7 @@ Adafruit I2C drivers (`.mpy` files) must be copied to `lib/`. Installed by defau
 `adafruit_lsm6ds` (accelerometer/gyro), `adafruit_sht31d` (temperature/humidity),
 `adafruit_ltr329_ltr303` (light), `adafruit_ht16k33` (LED matrix), `adafruit_register`,
 `adafruit_motor`, `neopixel`, `simpleio`, `adafruit_requests`, `adafruit_minimqtt`,
-`adafruit_io`, `adafruit_ticks`, `adafruit_rtttl`, `adafruit_waveform`,
+`adafruit_io`, `adafruit_ticks`, `adafruit_rtttl`, `adafruit_waveform`, `adafruit_ble`,
 `adafruit_onewire` + `adafruit_ds18x20` (DS18B20 temperature), `adafruit_msa3xx`
 (MSA301/MSA311 accelerometer), `hcsr04` (ultrasonic), plus `ideaboard`, `ideasense`,
 `sumobotv2`, `font5x5`.

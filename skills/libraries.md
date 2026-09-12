@@ -37,7 +37,7 @@ plus all the core modules: `analogio`, `audiobusio`, `audiocore`, `audiomixer`,
 `sdcardio`, `socketpool`, `ssl`, `touchio`, `wifi`, and more (`help("modules")` at the
 REPL prints the full list).
 
-Shipped in `lib/` by this repository: `adafruit_ds18x20`,
+Shipped in `lib/` by this repository: `adafruit_ble` (Bluetooth LE), `adafruit_ds18x20`,
 `adafruit_ht16k33`, `adafruit_io`, `adafruit_lsm6ds`, `adafruit_ltr329_ltr303`,
 `adafruit_minimqtt`, `adafruit_msa3xx`, `adafruit_onewire`, `adafruit_register`,
 `adafruit_rtttl`, `adafruit_sht31d`, `adafruit_ticks`, `adafruit_waveform`,
