@@ -17,7 +17,7 @@ Read the reference document for the hardware in use before writing code. Start w
 
 ## Examples
 
-- [examples/](https://github.com/CRCibernetica/circuitpython-ideaboard/tree/master/examples): working scripts for the IdeaBoard, with `ideasense/` and `sumobotv2/` subfolders.
+- [examples/](https://github.com/CRCibernetica/circuitpython-ideaboard/tree/master/examples): working scripts for the IdeaBoard, with `ideasense/`, `sumobot/` (SumoBot v1) and `sumobotv2/` subfolders.
 - [lib/](https://github.com/CRCibernetica/circuitpython-ideaboard/tree/master/lib): the board libraries as shipped.
 - [root/](https://github.com/CRCibernetica/circuitpython-ideaboard/tree/master/root): `boot.py`, `code.py` and `settings.toml` as they ship in the board's root folder.
 
