@@ -8,6 +8,7 @@ code for your project that runs first time.
 |---|---|
 | `ideaboard.md` | The IdeaBoard on its own: motors, RGB LED, servos, sensors on the pins, Wi-Fi, buzzer. Always include this one. |
 | `ideasense.md` | The IdeaSense Explorer: 5x5 LED matrix, three buttons, temperature/humidity, light, accelerometer/gyro. |
+| `sumobot.md` | The original SumoBot (v1): four infrared modules on header pins, HC-SR04 ultrasonic, accelerometer/gyro, plus the IdeaBoard motors. |
 | `sumobotv2.md` | The SumoBot v2 robot: four infrared floor sensors, colour sensor, IMU, plus the IdeaBoard motors. |
 | `libraries.md` | Any sensor, display or module that the other documents do not mention: how to find the CircuitPython library, copy it to the board, and test it. |
 

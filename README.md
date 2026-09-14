@@ -4,7 +4,7 @@
 The IdeaBoard is an educational robotics development board created by CRCibernetica.com in Costa Rica.
 
 ## Working with an AI assistant
-The `skills/` folder holds reference documents that teach an AI assistant how the IdeaBoard, IdeaSense Explorer and SumoBot v2 work, so it can write CircuitPython that runs first time. Point your assistant at this repository (`llms.txt` at the root is the index), or paste the relevant file into the chat if your tool cannot read URLs. See `skills/README.md`.
+The `skills/` folder holds reference documents that teach an AI assistant how the IdeaBoard, IdeaSense Explorer, SumoBot and SumoBot v2 work, so it can write CircuitPython that runs first time. Point your assistant at this repository (`llms.txt` at the root is the index), or paste the relevant file into the chat if your tool cannot read URLs. See `skills/README.md`.
 
 ## Layout
 `lib/` and `examples/` are copied to the board as they are. `root/` holds the files that sit in the board's root folder on a freshly flashed IdeaBoard: `boot.py`, `code.py` and `settings.toml`.

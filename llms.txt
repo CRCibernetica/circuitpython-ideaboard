@@ -8,6 +8,7 @@ Read the reference document for the hardware in use before writing code. Start w
 
 - [IdeaBoard](https://raw.githubusercontent.com/CRCibernetica/circuitpython-ideaboard/master/skills/ideaboard.md): motors, RGB LED, servos, pins and sensors, Wi-Fi, buzzer. Always read this one.
 - [IdeaSense Explorer](https://raw.githubusercontent.com/CRCibernetica/circuitpython-ideaboard/master/skills/ideasense.md): 5x5 LED matrix, buttons, temperature/humidity, light, accelerometer/gyro.
+- [SumoBot v1](https://raw.githubusercontent.com/CRCibernetica/circuitpython-ideaboard/master/skills/sumobot.md): the original SumoBot, infrared modules on header pins, HC-SR04 ultrasonic, IMU, motors.
 - [SumoBot v2](https://raw.githubusercontent.com/CRCibernetica/circuitpython-ideaboard/master/skills/sumobotv2.md): infrared floor sensors, colour sensor, IMU, motors.
 - [Other libraries](https://raw.githubusercontent.com/CRCibernetica/circuitpython-ideaboard/master/skills/libraries.md): finding, copying and testing a CircuitPython library for any other sensor or module.
 

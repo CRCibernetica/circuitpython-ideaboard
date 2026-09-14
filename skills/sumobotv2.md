@@ -5,7 +5,8 @@ robot: an IdeaBoard drives two motors, and a sensor board underneath reads four
 infrared floor sensors, a reflective colour sensor and an accelerometer/gyro. The
 sensor board connects to the IdeaBoard over I2C (STEMMA QT). The `sumobotv2` library
 exposes all sensors through one object, `SumoBotV2`. Motors are driven with the
-`ideaboard` library.
+`ideaboard` library. The earlier SumoBot with separate sensor modules on jumper wires
+is a different robot: see `sumobot.md`.
 
 Typical use: a robot sumo competition. Two robots on a round black arena (dohyo) with
 a white border. A robot loses when pushed out. Robots must stay inside (detect the
