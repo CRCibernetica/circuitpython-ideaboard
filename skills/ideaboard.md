@@ -249,7 +249,7 @@ secrets = {"ssid": "MyWifi", "password": "mypassword"}
 ```
 
 ```python
-import wifi, socketpool, ssl
+import wifi, socketpool
 import adafruit_requests
 from secrets import secrets
 
@@ -257,13 +257,31 @@ wifi.radio.connect(secrets["ssid"], secrets["password"])
 print("IP:", wifi.radio.ipv4_address)
 
 pool = socketpool.SocketPool(wifi.radio)
-requests = adafruit_requests.Session(pool, ssl.create_default_context())
+requests = adafruit_requests.Session(pool)        # http:// only
 data = requests.get("http://api.open-notify.org/iss-now.json").json()
+
+# For https:// URLs add SSL (uses ~20 KB more memory, see below):
+# import ssl
+# requests = adafruit_requests.Session(pool, ssl.create_default_context())
 ```
 
 Adafruit IO (MQTT dashboards) works with `adafruit_minimqtt` and `adafruit_io`; the
 `examples/adafruit_io_test.py` file in this repository is the working template.
 Remember analog pins IO4/25/26/27 stop working while Wi-Fi is on.
+
+**HTTPS and memory.** The board has no PSRAM. An `https://` request needs one free
+block of about 18 to 20 KB of ESP-IDF memory for TLS, and the Python heap takes
+memory from that same pool as libraries are imported, without giving it back. HTTPS
+works in a small program, but fails with `MemoryError` once larger libraries are
+loaded; `IdeaSense()` is enough to break it (`ideasense.md` section 6). Rules:
+
+- Prefer `http://` URLs whenever the service offers them. Then `ssl` is not needed:
+  `adafruit_requests.Session(pool)`.
+- If HTTPS is required, keep the program small and import as few libraries as
+  possible.
+- `gc.mem_free()` does not show this problem. To diagnose it, print
+  `espidf.heap_caps_get_largest_free_block()` (`import espidf`); below about 18000,
+  HTTPS will fail.
 
 ### ESP-NOW (board-to-board radio, no router)
 

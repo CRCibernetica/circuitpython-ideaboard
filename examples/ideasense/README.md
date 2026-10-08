@@ -129,3 +129,32 @@ This repository includes several example scripts to help you get started:
 * `text_demo.py` & `font5x5.py`: Demonstrates how to use an external font dictionary to scroll alphanumeric characters across the 5x5 matrix smoothly.
 * `weather_station.py`: An interactive application that maps buttons to scroll the current temperature or humidity across the display.
 * `sand.py`: A fun physics toy that uses the accelerometer to simulate grains of sand falling across the 5x5 matrix based on how you tilt the board.
+* `https_memory_test.py`: Shows why `https://` requests fail with `MemoryError` while the IdeaSense is in use (see below).
+
+## Wi-Fi: use HTTP, not HTTPS
+
+Wi-Fi and plain `http://` requests work together with the IdeaSense. `https://` requests
+do not: they fail with `MemoryError`. The IdeaBoard's ESP32 has no extra RAM (PSRAM), and
+a secure (TLS) connection needs a single free block of about 18 to 20 KB. Loading the
+IdeaSense sensor drivers uses up that memory, and CircuitPython does not give it back.
+`gc.collect()`, `.mpy` files, or making the first request before creating `IdeaSense()`
+do not solve it.
+
+Measured on CircuitPython 10.3.0 (`espidf.heap_caps_get_largest_free_block()`):
+
+| State | Largest free block | HTTPS |
+|---|---|---|
+| Fresh start | ~48 KB | works |
+| After `IdeaSense()` + `font5x5` | ~13 KB | `MemoryError` |
+| After closing an HTTPS connection with IdeaSense loaded | ~17 KB | `MemoryError` |
+| Matrix driver + `font5x5` only (no sensor drivers) | ~32 KB | works |
+
+Use `http://` URLs (Open-Meteo and most hobby APIs accept them) and create the session
+without SSL: `adafruit_requests.Session(socketpool.SocketPool(wifi.radio))`.
+
+The limit comes from `IdeaSense()` importing all four sensor drivers when it is created.
+In the measured order, matrix + `font5x5` + SHT30 + LTR303 still left about 31 KB, and
+importing the LSM6DS accelerometer driver was the step that dropped it below what TLS
+needs. A version of `ideasense.py` that imports a sensor driver only the first time
+its property is read (`accel`/`gyro`, `temp`/`humid`, `light`) would most likely make
+HTTPS work in programs that use only the matrix and buttons.

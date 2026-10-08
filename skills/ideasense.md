@@ -165,6 +165,8 @@ Rules:
    slower. The IMU can be read every loop.
 7. Sensors return floats; format them with `:.1f` before showing.
 8. Follow all rules in `ideaboard.md` (sleep in every loop, complete programs, etc.).
+9. With Wi-Fi, use `http://` URLs, never `https://`. HTTPS fails with `MemoryError`
+   once `IdeaSense` is loaded (section 6).
 
 ## 5. Project patterns
 
@@ -208,9 +210,73 @@ Combining with the IdeaBoard: the IdeaSense can be the "dashboard" of a robot. E
 show the ultrasonic distance as a bar, use A/B/C to choose speed, drive with
 `ib.motor_1.throttle`.
 
-## 6. Examples in this repository
+## 6. Wi-Fi with the IdeaSense: HTTP yes, HTTPS no
+
+Wi-Fi and plain HTTP work together with `IdeaSense()`. **HTTPS does not**: every
+`requests.get("https://...")` raises `MemoryError` once the library is loaded.
+Measured on CircuitPython 10.3.0:
+
+- A TLS connection needs one free block of about 18 to 20 KB in the ESP-IDF heap.
+  A block of 17 KB is not enough.
+- The Python heap is taken from that same ESP-IDF memory. It grows when libraries are
+  imported and does not give memory back. Loading `IdeaSense` (its four sensor drivers
+  plus `font5x5`) shrinks the largest free block from about 48 KB to about 13 KB.
+  In the measured import order, the LSM6DS accelerometer driver was the step that
+  broke it: matrix + `font5x5` + SHT30 + LTR303 still left about 31 KB.
+- `gc.mem_free()` still reports about 30 KB free, so it misleads. The number that
+  matters is `espidf.heap_caps_get_largest_free_block()`.
+
+These do **not** fix it, so do not suggest them: `gc.collect()` before the request,
+compiling `ideasense.py`/`font5x5.py` to `.mpy`, or connecting and doing the first
+HTTPS request before creating `IdeaSense()`. The last one works only while the first
+connection stays open; as soon as the server closes it (seconds to minutes later)
+the next request needs a new handshake and fails.
+
+What to do instead:
+
+1. Use `http://` when the service offers it. Open-Meteo
+   (`http://api.open-meteo.com/v1/forecast?...`), Open Notify and most hobby APIs do.
+   With HTTP, create the session without SSL:
+   `adafruit_requests.Session(socketpool.SocketPool(wifi.radio))`.
+2. Adafruit IO over MQTT on port 1883 (`examples/adafruit_io_test.py`) is plain MQTT,
+   so TLS is not involved (not yet tested together with the IdeaSense).
+3. If the student needs a service that only offers HTTPS, say plainly that it does not
+   fit in memory together with the current IdeaSense library on this board. Options: a project without
+   the IdeaSense, or a second IdeaBoard that fetches the data and sends it over
+   ESP-NOW (see `ideaboard.md`).
+
+`examples/ideasense/https_memory_test.py` reproduces the problem and prints the
+ESP-IDF numbers.
+
+```python
+import time
+import wifi, socketpool
+import adafruit_requests
+from secrets import secrets
+from ideasense import IdeaSense
+from font5x5 import TextDisplay
+
+idea = IdeaSense()
+display = TextDisplay(idea.matrix)
+
+wifi.radio.connect(secrets["ssid"], secrets["password"])
+requests = adafruit_requests.Session(socketpool.SocketPool(wifi.radio))   # no ssl
+URL = ("http://api.open-meteo.com/v1/forecast"          # http, not https
+       "?latitude=9.93&longitude=-84.08&current=temperature_2m")
+
+while True:
+    try:
+        temp = requests.get(URL).json()["current"]["temperature_2m"]
+        display.scroll_text(f"{temp:.1f}C", speed=0.06)
+    except Exception as e:
+        print("Fetch failed:", repr(e))
+    time.sleep(600)
+```
+
+## 7. Examples in this repository
 
 `examples/ideasense/`: `ideasense_simpletest.py` (every feature once), `button_test.py`
 (event queue), `button_demo.py` (all button APIs in one loop), `text_demo.py` (font and
-scrolling), `weather_station.py`, `sand.py` (accelerometer game). `README.md` in the
+scrolling), `weather_station.py`, `sand.py` (accelerometer game), `https_memory_test.py` (shows
+the HTTPS memory limit, section 6). `README.md` in the
 same folder is the human-readable API description.

@@ -19,7 +19,7 @@ below and tell the student exactly which files you found and where they came fro
   shell can use `tools/ibserial.py` from this repository (section 5).
 - Only one program can hold the serial port at a time. If a tool cannot connect, the
   first thing to check is whether IdeaCode, Thonny, or another terminal is already open.
-- CircuitPython is **10.x** (10.1.4 at the time of writing). Library files must come from
+- CircuitPython is **10.x** (10.3.0 at the time of writing). Library files must come from
   the **10.x** bundles. A `.mpy` from another major version fails with
   `ValueError: incompatible .mpy file`.
 - I2C is `board.I2C()` with SDA on IO21 and SCL on IO22, also on the STEMMA QT
@@ -193,7 +193,8 @@ Say so plainly, then offer the smallest path that works:
 | `ValueError: incompatible .mpy file` | `.mpy` from a 9.x or older bundle | use the 10.x bundle |
 | `ValueError: No I2C device at address: 0x77` | wiring, power, or the other address | scan; pass `address=` |
 | `OSError: [Errno 19] ENODEV` / `[Errno 5] EIO` | device stopped answering mid-transfer | loose wire, too-long cable, or missing pull-ups |
-| `MemoryError` | too many large `.py` files imported | use `.mpy`; import fewer modules; `gc.collect()` |
+| `MemoryError` on import | too many large `.py` files imported | use `.mpy`; import fewer modules; `gc.collect()` |
+| `MemoryError` on an `https://` request | TLS needs an ~18 KB free block that imported libraries have used up; `gc.collect()` and `.mpy` do not help | use `http://`; import fewer libraries (see `ideaboard.md`, Wi-Fi) |
 | `RuntimeError: ... in use` | pin already claimed | `IdeaBoard()` owns IO2, IO12 to IO15; SDA/SCL are I2C only |
 | Tool cannot open the port | another program is connected | close IdeaCode/Thonny; on Linux check the `uucp`/`dialout` group |
 | `ValueError: ... not a valid pin` | pin name from another board | use `board.IOnn` names from the pin map |
