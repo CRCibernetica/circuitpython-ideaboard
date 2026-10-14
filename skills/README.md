@@ -22,6 +22,17 @@ they need. Say something like:
 > Read https://github.com/CRCibernetica/circuitpython-ideaboard/blob/master/llms.txt
 > before writing any code. My project uses the IdeaBoard and the SumoBot v2.
 
+If your AI tool can run commands on your computer (Claude Code, Codex, Cursor's agent, ...),
+this is a good first prompt. It checks that the AI can reach the board, then runs a tiny
+program on it:
+
+> Read https://github.com/CRCibernetica/circuitpython-ideaboard/blob/master/llms.txt
+> and the IdeaBoard and IdeaSense Explorer reference docs it links to. I have an IdeaBoard
+> with an IdeaSense Explorer plugged in over USB. Download tools/ibserial.py into this
+> folder, install pyserial if needed, find my board's serial port, and list the files on
+> the board. Then write a tiny program that scrolls "HI" on the 5x5 matrix, run it on the
+> board, and tell me what you did in simple steps.
+
 If your tool cannot open links, paste the documents in yourself:
 
 1. Open the file(s) for your hardware on GitHub and click **Raw**, or open them in a text editor.
